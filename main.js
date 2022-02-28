@@ -1,27 +1,27 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const ballRadius = 10;
-let x = canvas.width/2;
-let y = canvas.height-30;
-let dx = 2;
-let dy = -2;
+let x = canvas.width/2; // initial circle x-axis position
+let y = canvas.height-30; // initial circle y-axis position
+let dx = 4; // x increment value per cycle
+let dy = -4; // y increment value per cycle
 let paddleHeight = 10;
 let paddleWidth = 75;
 let paddleX = (canvas.width-paddleWidth) / 2;
 let isRightPressed = false;
 let isLeftPressed = false;
-var brickRowCount = 3;
-var brickColumnCount = 5;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
+let brickRowCount = 3;
+const brickColumnCount = 5;
+const brickWidth = 75;
+const brickHeight = 20;
+const brickPadding = 10;
+const brickOffsetTop = 30;
+const brickOffsetLeft = 30;
 let score = 0;
 let lives = 3;
 
-
-var bricks = [];
+// Utilities
+const bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
     for(var r=0; r<brickRowCount; r++) {
@@ -29,8 +29,6 @@ for(var c=0; c<brickColumnCount; c++) {
     }
 }
 
-
-// Utilities
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
@@ -71,13 +69,8 @@ function drawBricks() {
     }
 }
 
-
-
-
-
-
-var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
 
 function drawScore() {
     ctx.font = "16px Arial";
@@ -134,12 +127,6 @@ else if(isLeftPressed && paddleX > 0) {
     y += dy;
     requestAnimationFrame(draw);
 }
-    
-
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
-
 
 function collisionDetection() {
     for(var c=0; c<brickColumnCount; c++) {
@@ -160,11 +147,11 @@ function collisionDetection() {
         }
     }
 }
-
-
-
-
-
+    
+// Controls
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyDownHandler(e) {
     if (e.key == "Right" || e.key == "ArrowRight") {
@@ -190,7 +177,6 @@ function keyUpHandler(e) {
         isLeftPressed = false;
     }
 }
-
 
 draw();
 
