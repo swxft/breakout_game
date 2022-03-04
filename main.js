@@ -1,13 +1,13 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 const ballRadius = 10;
-let x = canvas.width/2; // initial circle x-axis position
-let y = canvas.height-30; // initial circle y-axis position
+let x = canvas.width / 2; // initial circle x-axis position
+let y = canvas.height - 30; // initial circle y-axis position
 let dx = 4; // x increment value per cycle
 let dy = -4; // y increment value per cycle
 const paddleHeight = 10;
 const paddleWidth = 75;
-let paddleX = (canvas.width-paddleWidth) / 2;
+let paddleX = (canvas.width - paddleWidth) / 2;
 let isRightPressed = false;
 let isLeftPressed = false;
 const brickRowCount = 3;
